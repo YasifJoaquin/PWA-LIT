@@ -1,14 +1,20 @@
 import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
-@customElement('my-element')
-export class MyElement extends LitElement {
+@customElement('name-tag')
+export class NameTag extends LitElement {
   @property()
-  mensaje: string = 'Hola buenas tardes';
+  name: string = 'Escribe tu nombre';
 
   render() {
     return html`
-      <p>${this.mensaje}</p>
+      <p>Hola, ${this.name}</p>
+      <input @input=${this.changeName} placeholder="Escribir nombre">
     `;
+  }
+
+  changeName(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.name = input.value;
   }
 }
